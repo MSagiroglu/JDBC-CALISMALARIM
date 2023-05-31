@@ -12,10 +12,11 @@ public class ExecuteUpdate01 {
         System.out.println("updateEdilenSatirSayisi = " + updateEdilenSatirSayisi);
 
         //update sonrası listeleme işlemi
+        Statement statement2 = connection.createStatement();
         String sql2 = "SELECT * FROM companies;";
-        ResultSet resultSet = statement.executeQuery(sql2);
-        while (resultSet.next()) {
-            System.out.println(resultSet.getObject(1) + " --- " + resultSet.getObject(2) + " --- " + resultSet.getObject(3));
+        ResultSet resultSet2 = statement2.executeQuery(sql2);
+        while (resultSet2.next()) {
+            System.out.println(resultSet2.getObject(1) + " --- " + resultSet2.getObject(2) + " --- " + resultSet2.getObject(3));
 
             connection.close();
             statement.close();

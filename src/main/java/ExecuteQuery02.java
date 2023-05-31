@@ -19,8 +19,8 @@ public class ExecuteQuery02 {
         while (resultSet2.next()) {
             System.out.println(resultSet2.getObject(1) + " --- " + resultSet2.getObject(2));
         }
-        connection.close();
-        statement.close();
+        //connection.close();
+        //statement.close();
         //class acik kalirsa bulut sistemi ile baglanti halinde ekstra ucret odemek zorunda kalabiliriz.
     }
 }

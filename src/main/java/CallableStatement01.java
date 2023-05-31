@@ -28,6 +28,8 @@ public class CallableStatement01 {
 
         // 3. adım : functionu çağırma
         CallableStatement callableStatement=connection.prepareCall("{? = call selamlama(?)}");
+        //1. ? işareti için data türü belirtilmeli
+        //1. ? işareti için girilecek olan parametre belirtilmeli.
 
 
         //4. adım : return için registerOutParameter() metodunu parametreler için setInt,setString gibi metodları kullanacağız.
