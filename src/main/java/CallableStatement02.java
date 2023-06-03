@@ -2,21 +2,20 @@ import java.sql.*;
 
 public class CallableStatement02 {
     public static void main(String[] args) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "musti.598");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/mustafa", "postgres", "musti123");
         Statement statement = connection.createStatement();
 
         //Method oluşturma ve onu çağırma işlemlerini Callable Statement ile yapacağız
          /*
         ÖRNEK-1 : SELAMLAMA YAPAN BİR FUNCTION OLUŞTURUP ÇALIŞTIRINIZ.
          */
-        String sql = "CREATE OR REPLACE FUNCTION selamlama (x TEXT,y TEXT) --FONKSİYON ADI VE PARAMETRELERİ VERİLİR\n" +
-                "RETURNS TEXT --RETURN TYPE VERİLİR\n" +
+        String sql = "CREATE OR REPLACE FUNCTION calculate_average(param1 INT, param2 INT)\n" +
+                "RETURNS DECIMAL\n" +
                 "AS\n" +
                 "$$\n" +
                 "BEGIN\n" +
-                "\n" +
-                "RETURN 'Merhaba ' || x || ' nasılsın:? ' || y ||', sen de nasılsın ?';\n" +
-                "-- || İLE CONCETENATION YAPAR JAVADAKİ + GİBİ.\n" +
+                "    \n" +
+                "    RETURN (param1+param2)/2;\n" +
                 "END;\n" +
                 "$$\n" +
                 "LANGUAGE plpgsql;";
@@ -34,13 +33,13 @@ public class CallableStatement02 {
          */
 
         // 3. adım : functionu çağırma
-        CallableStatement callableStatement=connection.prepareCall("{? = call selamlama(?,?)}");
+        java.sql.CallableStatement callableStatement=connection.prepareCall("{?= call calculate_average(?,?)}");
 
 
         //4. adım : return için registerOutParameter() metodunu parametreler için setInt,setString gibi metodları kullanacağız.
-        callableStatement.registerOutParameter(1, Types.VARCHAR);
-        callableStatement.setString(2,"Ali");
-        callableStatement.setString(3,"Ayşe");
+        callableStatement.registerOutParameter(1, Types.DECIMAL);
+        callableStatement.setInt(2,10);
+        callableStatement.setInt(3,30);
 
 
         //5. adım :execute() metodu ile callableStatement'ı çalıştırırız.
@@ -48,6 +47,6 @@ public class CallableStatement02 {
 
         //6. adım : sonucu  görmek için callableStatement'dan data türünü çağırıyoruz içindeki dönen
         //callableStatement'ta data resultSet içine alınmaz. Direk callableStatement'tan alınır.
-        System.out.println(callableStatement.getString(1));
+        System.out.println(callableStatement.getBigDecimal(1));
     }
 }

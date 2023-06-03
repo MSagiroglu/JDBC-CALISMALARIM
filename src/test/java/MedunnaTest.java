@@ -43,13 +43,7 @@ public class MedunnaTest {
 
        //User closes the connection
        JDBCUtils.closeConnection();
-
-
-
-
-
-
-    }
+   }
 
 
 

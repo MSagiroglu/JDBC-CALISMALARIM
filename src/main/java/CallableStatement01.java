@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class CallableStatement01 {
     public static void main(String[] args) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "musti.598");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/mustafa", "postgres", "musti123");
         Statement statement = connection.createStatement();
 
         //Method oluşturma ve onu çağırma işlemlerini Callable Statement ile yapacağız

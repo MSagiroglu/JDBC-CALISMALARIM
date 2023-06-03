@@ -11,7 +11,7 @@ public class JDBCUtils {
     //1. DATABASE'E BAĞLANMA METODU --> Connection return eder
     public static Connection connecToDatabase() {//parametre vererek database i başka yollarlada belirleyebiliriz
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "musti.598");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/mustafa", "postgres", "musti123");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
